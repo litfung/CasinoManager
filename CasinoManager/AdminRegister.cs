@@ -17,6 +17,8 @@ namespace CasinoManager
         public Information info = new Information();
         public Operations oper = new Operations();
 
+        public static string acLabel = "oops?";
+
         public AdminRegister()
         {
             InitializeComponent();
@@ -40,6 +42,9 @@ namespace CasinoManager
                 int rowsc = oper.insertCasino(info);
                 if (rowsc > 0)
                 {
+                    Operations.lastFrom = "AdminReg";
+                    acLabel = "You have created a new casino.";
+
                     AdminCreated adminCreated = new AdminCreated();
                     adminCreated.Show();
                 }

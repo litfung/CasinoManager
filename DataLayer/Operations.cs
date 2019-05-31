@@ -14,6 +14,8 @@ namespace DataLayer
         public Dbconnection db = new Dbconnection();
         public Information info = new Information();
 
+        public static string lastFrom = "";
+
 
         public int insertUser(Information info)
         {
@@ -22,13 +24,21 @@ namespace DataLayer
             cmd.CommandText = "INSERT INTO userData (FirstName, LastName, Username, Password, IsAdmin) VALUES ('" + info.firstname + "','" + info.lastname + "','" + info.username + "','" + info.password + "','" + info.isadmin + "')";
             return db.ExeNonQuery(cmd);
         }
-         
+
         public int insertCasino(Information info)
         {
             SqlCommand cmd = new SqlCommand();
             cmd.CommandType = CommandType.Text;
             cmd.CommandText = "INSERT INTO casinoDATA (CasinoName, ClubName, CasinoLocation, OwnerName) VALUES ('" + info.casinoname + "','" + info.clubname + "','" + info.casinolocation + "','" + info.username + "')";
             return db.ExeNonQuery(cmd);
+        }
+
+        public DataTable login(Information info)
+        {
+            SqlCommand cmd = new SqlCommand();
+            cmd.CommandType = CommandType.Text;
+            cmd.CommandText = "SELECT * FROM userData WHERE Username='" + info.username + "' and Password='" + info.password + "'";
+            return db.ExeReader(cmd);
         }
 
     }

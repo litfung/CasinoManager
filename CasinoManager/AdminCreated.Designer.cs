@@ -28,26 +28,49 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.label1 = new System.Windows.Forms.Label();
+            this.lblGreeting = new System.Windows.Forms.Label();
+            this.lblName = new System.Windows.Forms.Label();
+            this.lblCasino = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
-            // label1
+            // lblGreeting
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(108, 79);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(287, 13);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "You have successfully created your casino.  More to follow.";
+            this.lblGreeting.AutoSize = true;
+            this.lblGreeting.Location = new System.Drawing.Point(134, 26);
+            this.lblGreeting.Name = "lblGreeting";
+            this.lblGreeting.Size = new System.Drawing.Size(212, 13);
+            this.lblGreeting.TabIndex = 0;
+            this.lblGreeting.Text = "If you\'re seeing this, something went wrong.";
+            // 
+            // lblName
+            // 
+            this.lblName.AutoSize = true;
+            this.lblName.Location = new System.Drawing.Point(106, 85);
+            this.lblName.Name = "lblName";
+            this.lblName.Size = new System.Drawing.Size(79, 13);
+            this.lblName.TabIndex = 1;
+            this.lblName.Text = "Your Full Name";
+            // 
+            // lblCasino
+            // 
+            this.lblCasino.AutoSize = true;
+            this.lblCasino.Location = new System.Drawing.Point(294, 85);
+            this.lblCasino.Name = "lblCasino";
+            this.lblCasino.Size = new System.Drawing.Size(100, 13);
+            this.lblCasino.TabIndex = 2;
+            this.lblCasino.Text = "Name of the Casino";
             // 
             // AdminCreated
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(517, 222);
-            this.Controls.Add(this.label1);
+            this.Controls.Add(this.lblCasino);
+            this.Controls.Add(this.lblName);
+            this.Controls.Add(this.lblGreeting);
             this.Name = "AdminCreated";
             this.Text = "Admin Account Created";
+            this.Load += new System.EventHandler(this.AdminCreated_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -55,6 +78,8 @@
 
         #endregion
 
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label lblGreeting;
+        private System.Windows.Forms.Label lblName;
+        private System.Windows.Forms.Label lblCasino;
     }
 }

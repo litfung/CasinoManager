@@ -16,7 +16,7 @@ namespace CasinoManager
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new AdminRegister());
+            Application.Run(new Login());
         }
     }
 }
