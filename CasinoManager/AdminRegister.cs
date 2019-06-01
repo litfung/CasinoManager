@@ -14,7 +14,7 @@ namespace CasinoManager
 {
     public partial class AdminRegister : Form
     {
-        public Information info = new Information();
+        public Casino casino = new Casino();
         public Operations oper = new Operations();
 
         public static string acLabel = "oops?";
@@ -26,29 +26,47 @@ namespace CasinoManager
 
         private void btnSubmit_Click(object sender, EventArgs e)
         {
-            info.firstname = tbFirst.Text;
-            info.lastname = tbLast.Text;
-            info.username = tbUsername.Text;
-            info.password = tbPassword.Text;
-            info.isadmin = 1;
-
-            info.casinoname = tbCasino.Text;
-            info.clubname = tbClub.Text;
-            info.casinolocation = tbLocation.Text;
-
-            int rowsu = oper.insertUser(info);
-            if (rowsu > 0)
+            
+            if (tbPassword.Text.Length >= 8)
             {
-                int rowsc = oper.insertCasino(info);
-                if (rowsc > 0)
+                if (tbPassword.Text == tbConfirmPW.Text)
                 {
-                    Operations.lastFrom = "AdminReg";
-                    acLabel = "You have created a new casino.";
 
-                    AdminCreated adminCreated = new AdminCreated();
-                    adminCreated.Show();
+                    Guid userGuid = System.Guid.NewGuid();
+                    string hashedPassword = Security.HashSHA1(tbPassword.Text + userGuid.ToString());
+
+                    casino.firstname = tbFirst.Text;
+                    casino.lastname = tbLast.Text;
+                    casino.username = tbUsername.Text;
+                    casino.password = hashedPassword;
+                    casino.email = tbEmail.Text; ;
+                    casino.casinoname = tbCasino.Text;
+                    casino.clubname = tbClub.Text;
+                    casino.casinolocation = tbLocation.Text;
+                    casino.userguid = userGuid;
+
+                    int rowsc = oper.insertCasino(casino);
+                    if (rowsc > 0)
+                    {
+                        Operations.lastFrom = "AdminReg";
+                        acLabel = "You have created a new casino.";
+
+                        AdminCreated adminCreated = new AdminCreated();
+                        adminCreated.Show();
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Your passwords do not match");
                 }
             }
+            else
+            {
+                MessageBox.Show("Your password must be at least 8 characters");
+            }
+
+
+
 
 
         }

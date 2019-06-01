@@ -15,13 +15,15 @@ namespace CasinoManager
 
     public partial class Login : Form
     {
-        public Information info = new Information();
+        public Casino casino = new Casino();
         public Operations oper = new Operations();
 
-        DataTable dt = new DataTable();
+        DataTable dtUser = new DataTable();
+        DataTable dtCasino = new DataTable();
 
-        public static string dtName = "oops?";
+        public static string acName = "oops?";
         public static string acLabel = "oops?";
+        public static string acCasino = "oops?";
 
         public Login()
         {
@@ -30,20 +32,27 @@ namespace CasinoManager
 
         private void btnLogin_Click(object sender, EventArgs e)
         {
-            info.username = tbUsername.Text;
-            info.password = tbPassword.Text;
+            casino.username = tbUsername.Text;
+            casino.password = tbPassword.Text;
 
-            dt = oper.login(info);
+            //dtUser = oper.loginUser(casino);
+            dtCasino = oper.loginCasino(casino);
 
-            if (dt.Rows.Count == 1)
+            if (dtUser.Rows.Count == 1)
             {
-                foreach(DataRow row in dt.Rows)
+                foreach(DataRow row in dtUser.Rows)
                 {
                     string fname = row["FirstName"].ToString();
                     string lname = row["LastName"].ToString();
 
-                    dtName = fname + " " + lname;
+                    acName = fname + " " + lname;
                 }
+
+                foreach(DataRow row in dtCasino.Rows)
+                {
+                    acCasino = row["CasinoName"].ToString();
+                }
+
                 Operations.lastFrom = "Login";
                 acLabel = "You have succesfully logged in.";
 

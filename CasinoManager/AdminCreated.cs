@@ -21,7 +21,8 @@ namespace CasinoManager
 
         private void AdminCreated_Load(object sender, EventArgs e)
         {
-            lblName.Text = Login.dtName;
+            lblName.Text = Login.acName;
+            lblCasino.Text = Login.acCasino;
 
             if (Operations.lastFrom == "Login")
             {
